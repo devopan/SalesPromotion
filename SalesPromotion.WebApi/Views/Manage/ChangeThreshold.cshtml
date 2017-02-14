@@ -1,0 +1,31 @@
+﻿@model SalesPromotion.WebApi.Models.ChangeThresholdViewModel
+@{
+    ViewBag.Title = "Change Threshold";
+}
+
+<h2>@ViewBag.Title.</h2>
+
+@using (Html.BeginForm("ChangeThreshold", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <h4>Change Threshold Form</h4>
+    <p>Please enter a value from 1 to 9. The lower the value the less the winners will be. negative number is for no winners, 0 is for always winners, 9 is for no effect.</p>
+    <hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Threshold, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Threshold, new { @class = "form-control", @id = "txbThreshold", @maxlength = "1" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Change threshold" class="btn btn-default" />
+        </div>
+    </div>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

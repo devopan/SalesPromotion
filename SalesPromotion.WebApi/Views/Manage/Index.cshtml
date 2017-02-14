@@ -1,0 +1,31 @@
+﻿@model SalesPromotion.WebApi.Models.IndexViewModel
+@{
+    ViewBag.Title = "Manage";
+}
+
+<h2>@ViewBag.Title.</h2>
+
+<p class="text-success">@ViewBag.StatusMessage</p>
+<div>
+    <h4>Change your account settings</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @if (@Model.Threshold >= 0)
+            {
+                @:Threshold is: 
+                @Model.Threshold;
+            }
+            else
+            {
+                @:Threshold:
+            }
+        </dt>
+        <dd>
+            [
+            @Html.ActionLink("Change the global threshold", "ChangeThreshold")
+            ]
+        </dd>
+    </dl>
+
+</div>

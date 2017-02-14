@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html ng-app="myModule">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta charset="UTF-8" />
+
+    <script src="lib/jquery-3.1.1.js"></script>
+    <script src="lib/angular.js"></script>
+    <script src="lib/validate.js"></script>
+    <script src="app/script.js"></script>
+    <script src="app/app.js"></script>
+    
+    <script src="app/SalesPromotion/controller.js"></script>
+    <script src="app/SalesPromotion/service.js"></script>
+    
+    <link href="content/css/styles.css" rel="stylesheet" />
+</head>
+<body ng-controller="myController">
+    <div>
+        <div id="container_buttons">
+            <p>
+                <a class="a_demo_four" ng-click="login($event)">
+                    Admin Login
+                </a>
+            </p>
+        </div>
+        <img class="imgPromo"
+             ng-src="{{theme.image}}"
+             alt="promo!!!"
+             style="height:100px; width:200px" />
+
+        <form name="form1" class="form-wrapper">
+            <input id="code" type="text" ng-model="codeInput" name="code" limit-Chars text-Length="maxLength" placeholder="Enter promo code..." onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter promo code...'" required uppercased/>
+            <input id="submit" type="submit" value="Check it!" ng-click="checkRegEx($event)">
+        </form>
+    </div>
+    <div id="popup" class="overlay">
+        <div class="popup">
+            <a class="close" href="#">×</a>
+            <div class="content">
+                <div class="header">
+                    <h1>  Congratulations you have won! </h1>
+                    <p><span>  Fill out the form below and click the button so we can send you the prize! </span></p>
+                </div>
+
+                <form name="form2">
+
+                    <table>
+                        <tr ng-repeat="field in fields">
+                            <td>
+                                {{field.labelText}}
+                            </td>
+
+                            <td ng-if="field.labelText != 'Telephone Number'">
+                                <input type="text" class="input" ng-model="field.value" />
+                            </td>
+
+                            <td ng-if="field.labelText == 'Telephone Number'">
+                                <input type="tel" class="input" ng-model="field.value" />
+                            </td>
+  
+                        </tr>
+                    </table>
+                    <br />
+
+                    <input type="button" class="register" value="Send me my prize!" ng-click="addWinner($event, fields)">
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
